@@ -19,10 +19,14 @@ PARSING = line tokens expansions
 TOOLS = fd free token expansions parsing
 
 #Archivos fuente
-SRC = src/tools/*.c 
+SRC =	src/tools/type.c \
+		src/tools/parsing_quotes.c \
+		src/tools/token.c \
+		src/parsing/tokens.c \
+
 
 #Archivos objeto
-OBJ = $(SRC:c=o)
+OBJ = $(SRC:%.c=%.o)
 
 #Regla principal
 all: $(NAME)

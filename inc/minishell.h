@@ -6,7 +6,7 @@
 /*   By: amiguel- <amiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:03:09 by amiguel-          #+#    #+#             */
-/*   Updated: 2024/09/23 11:08:11 by amiguel-         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:42:44 by amiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,34 @@ typedef struct	s_mini
 	int				no_exec;
 }				t_mini;
 
+/*
+TOOLS QUOTES
+*/
+int	count_backslashes(char *line, int index);
+int	quotes(char *line, int index);
+int	is_sep(char *line, int i);
+int	ignore_sep(char *line, int i);
+/*
+TOOLS TOKEN
+*/
+t_token	*next_sep(t_token *token, int skip);
+t_token	*prev_sep(t_token *token, int skip);
+t_token	*next_run(t_token *token, int skip);
+/*
+TOOLS TYPE
+*/
+int	is_type(t_token *token, int type);
+int	is_types(t_token *token, char *types);
+int	has_type(t_token *token, int type);
+int	has_pipe(t_token *token);
+/*
+SRC TOKENS
+*/
+void	type_arg(t_token *token, int separator);
+void	squish_args(t_mini *mini);
+int	next_alloc(char *line, int *i);
+t_token	*next_token(char *line, int *i);
+t_token	*get_tokens(char *line);
+	
 
 #endif

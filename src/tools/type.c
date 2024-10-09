@@ -6,7 +6,7 @@
 /*   By: amiguel- <amiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:35:30 by amiguel-          #+#    #+#             */
-/*   Updated: 2024/10/09 12:15:15 by amiguel-         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:47:42 by amiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_type(t_token *token, int type)
 {
-	if	(token && token->type == type)
+	if (token && token->type == type)
 		return (1);
 	else
 		return (0);
@@ -63,3 +63,11 @@ int	has_pipe(t_token *token)
 	return (0);
 }
 
+t_token	*next_type(t_token *token, int type, int skip)
+{
+	if (token && skip)
+		token = token->next;
+	while (token && token->type != type)
+		token = token->next;
+	return(token);
+}
