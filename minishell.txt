@@ -14,3 +14,6 @@ Parse Phases
     redirections
     expansor
     heredoc
+
+
+El exec es ruta del comando original(puntero) los argumentos con el comando(puntero doble) y el env (puntero doble)
