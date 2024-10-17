@@ -6,7 +6,7 @@
 /*   By: amiguel- <amiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:28:57 by amiguel-          #+#    #+#             */
-/*   Updated: 2024/10/10 11:58:02 by amiguel-         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:05:13 by amiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*space_alloc(char *line)
 {
-	char *new;
-	int	count;
-	int	i;
+	char	*new;
+	int		count;
+	int		i;
 
 	count = 0;
 	i = 0;
@@ -26,7 +26,7 @@ char	*space_alloc(char *line)
 			count++;
 		i++;
 	}
-	if (!(new = malloc(sizeof(char)*(i + 2 * count +1))))
+	if (!(new = malloc(sizeof(char) * (i + 2 * count + 1))))
 		return (NULL);
 	return (new);
 }
@@ -34,13 +34,13 @@ char	*space_alloc(char *line)
 char	*space_line(char *line)
 {
 	char	*new;
-	int	i;
-	int	j;
-	
+	int		i;
+	int		j;
+
 	i = 0;
 	j = 0;
 	new = space_alloc(line);
-	while (new && line[i])
+	while (new &&line[i])
 	{
 		if (quotes(line, i) != 2 && line[i] == '$' && i && line[i - 1] != '\\')
 			new[j++] = (char)(-line[i++]);
@@ -68,7 +68,7 @@ int	quote_check(t_mini *mini, char **line)
 		ft_memdel(*line);
 		mini->ret = 2;
 		mini->start = NULL;
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }
