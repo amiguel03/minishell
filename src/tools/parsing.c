@@ -6,7 +6,7 @@
 /*   By: amiguel- <amiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:26:53 by amiguel-          #+#    #+#             */
-/*   Updated: 2024/10/14 11:03:13 by amiguel-         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:41:32 by amiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_line(t_mini *mini, t_token *token)
 		if (is_type(token, "TAI") && (!token->next || is_type(token->next,
 					"TAIPE")))
 		{
-			ft_putstr_fd("bash: syyntax error unpredicted token", STDERR);
+			ft_putstr_fd("bash: syntax error unpredicted token", STDERR);
 			token->next ? ft_putstr_fd(token->next->str, STDERR) : 0;
 			token->next ? 0 : ft_putstr_fd("newline", STDERR);
 			ft_putendl_fd("'", STDERR);
