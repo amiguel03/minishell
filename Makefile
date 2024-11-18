@@ -19,10 +19,7 @@ PARSING = line tokens expansions
 TOOLS = fd free token expansions parsing
 
 #Archivos fuente
-SRC =	src/tools/type.c \
-		src/tools/parsing_quotes.c \
-		src/tools/token.c \
-		src/parsing/tokens.c \
+SRC =	
 
 
 #Archivos objeto
