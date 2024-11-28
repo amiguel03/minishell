@@ -1,68 +1,170 @@
+#------------------------------------------------------------------------------#
+#******************************************************************************#
+#********************************* C MAKEFILE *********************************#
+#******************************************************************************#
+#------------------------------------------------------------------------------#
+
+# Nombre del ejecutable a crear (sin espacios)
 NAME = libft.a
 
-CC = clang
+#------------------------------------------------------------------------------#
 
-CFLAGS = -Wall -Wextra -Werror -I includes/
+# Compilador a utilizar (gcc, clang, etc)
+CC = gcc
+# Flags de compilacion (agregar los que se necesiten)
+CFLAGS = -Wall -Wextra -Werror -g3
 
-HEADER = $(addsuffix .h, $(addprefix includes/, libutils get_next_line ft_printf))
+#------------------------------------------------------------------------------#
 
-FTIS = alnum alpha ascii count digit in print space spacenl where
+# Archivos fuente (agregar los que se necesiten)
+SRCS =	ft_atoi.c \
+		ft_itoa.c \
+		ft_bzero.c \
+		ft_split.c \
+		ft_strlen.c \
+		ft_memset.c \
+		ft_memchr.c \
+		ft_strchr.c \
+		ft_memcmp.c \
+		ft_calloc.c \
+		ft_strdup.c \
+		ft_lstnew.c \
+		ft_lstmap.c \
+		ft_intlen.c \
+		ft_memcpy.c \
+		ft_substr.c \
+		ft_memmove.c \
+		ft_strlcpy.c \
+		ft_strlcat.c \
+		ft_toupper.c \
+		ft_tolower.c \
+		ft_strrchr.c \
+		ft_isalpha.c \
+		ft_isdigit.c \
+		ft_isalnum.c \
+		ft_isascii.c \
+		ft_isprint.c \
+		ft_strnstr.c \
+		ft_isspace.c \
+		ft_strncmp.c \
+		ft_strjoin.c \
+		ft_strtrim.c \
+		ft_strmapi.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstiter.c \
+		ft_lstclear.c \
+		ft_striteri.c \
+		ft_putnbr_fd.c \
+		ft_putstr_fd.c \
+		ft_lstdelone.c \
+		ft_putchar_fd.c \
+		ft_putendl_fd.c \
+		ft_lstadd_back.c \
+		ft_lstadd_front.c \
 
-FTSKIP = space spacenl char chars
+#------------------------------------------------------------------------------#
+ 
+# Archivos objeto (no tocar)
+OBJS = $(SRCS:.c=.o)
+# Directorio de los archivos objeto (no tocar)
+OBJDIR = libft_objects
 
-FTLST = add_back add_front clear delone iter last map new size
+#------------------------------------------------------------------------------#
 
-FTMATH = abs nbrlen hexlen baselen power
+# Recuerda siempre usar $(RESET) al final de tu mensaje para restablecer los
+# colores a los valores predeterminados de la terminal.
+RESET = \033[0m
 
-FTMEM = bzero calloc memccpy memchr memcmp memcpy memdel memmove memset
+# Regular
+RED = \033[0;31m
+GREEN = \033[0;32m
+CYAN = \033[0;36m
 
-FTPUT = char endl nbr str char_fd endl_fd nbr_fd str_fd
+# Bold
+BOLD_RED = \033[1;31m
+BOLD_GREEN = \033[1;32m
+BOLD_PURPLE = \033[1;35m
 
-FTSTR = chr cmp dup isnum join lcat lcpy len mapi ncmp nstr rchr trim
+# More colors
+B_C = \033[1;36m
+YELLOW = \033[0;33m
+BOLD_YELLOW = \033[1;33m
+BLUE = \033[0;34m
+BOLD_BLUE = \033[1;34m
+MAGENTA = \033[0;35m
+BOLD_MAGENTA = \033[1;35m
+WHITE = \033[0;37m
+BOLD_WHITE = \033[1;37m
+#------------------------------------------------------------------------------#
 
-FTSUB = ft_str/ft_substr ft_str/ft_split
+LAST_MAKE_HAD_COMPILATION := 0
 
-FTTO = tolower toupper atoi itoa
-
-FTEX = gnl/get_next_line printf/ft_printf
-
-FTPRF = flagger branch_csp branch_duxo put_c put_s put_du put_o put_x put_p
-
-SRC = $(addsuffix .c, $(addprefix ft_is/ft_is, $(FTIS))) \
-	$(addsuffix .c, $(addprefix ft_lst/ft_lst, $(FTLST))) \
-	$(addsuffix .c, $(addprefix ft_math/ft_, $(FTMATH))) \
-	$(addsuffix .c, $(addprefix ft_mem/ft_, $(FTMEM))) \
-	$(addsuffix .c, $(addprefix ft_put/ft_put, $(FTPUT))) \
-	$(addsuffix .c, $(addprefix ft_skip/ft_skip_, $(FTSKIP))) \
-	$(addsuffix .c, $(addprefix ft_str/ft_str, $(FTSTR)) $(FTSUB)) \
-	$(addsuffix .c, $(addprefix ft_to/ft_, $(FTTO))) \
-	$(addsuffix .c, $(addprefix ft_, $(FTEX))) \
-	$(addsuffix .c, $(addprefix ft_printf/ft_printf_, $(FTPRF))) \
-
-OBJ = $(SRC:.c=.o)
+# Reglas del make (no tocar)
 
 all: $(NAME)
+	@if [ "$(LAST_MAKE_HAD_COMPILATION)" = "1" ]; then \
+		clear; \
+	else \
+		echo "╔══════════════════════════════════════════════════════════════╗"; \
+		echo "║ $(B_C)(┌ಠ_ಠ)\t ¡$(NAME) compilado con éxito!!\t\t(ಠ_ಠ┐)$(RESET) ║"; \
+		echo "╚══════════╗ ╔══════════╗ ╔══════════╗ ╔══════════╗ ╔══════════╝"; \
+	fi
+	@$(eval LAST_MAKE_HAD_COMPILATION := 1)
+	
+# La regla $(NAME) compila el ejecutable con los archivos objeto creados 
+$(NAME): $(addprefix $(OBJDIR)/, $(OBJS))
+	@echo "$(GREEN)¡Objetos de $(NAME) creados!\n$(RESET)"
+	@echo "$(CYAN)Compilando $(NAME)...\n$(RESET)"
+	@ar -crs $@ $^
 
+$(OBJDIR)/%.o: %.c | $(OBJDIR)
+	@mkdir -p $(@D)
+	@echo "$(CC) $(CFLAGS) -MMD -c $< -o $@"
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
+	@$(eval LAST_MAKE_HAD_COMPILATION := 1)
 
-$(NAME): $(OBJ)
-	@echo "\n\n\033[0;32mCompiling libft..."
-	@ar rc $(NAME) $^
-	@ranlib $(NAME)
-	@echo "\033[0m"
+# La regla $(OBJDIR) crea el directorio de los archivos objeto
+$(OBJDIR):
+	@echo "$(CYAN)Creando directorio de objetos de $(NAME)...\n$(RESET)"
+	@mkdir -p $(OBJDIR)
+	@echo "$(GREEN)¡Directorio de objetos de $(NAME) creado!\n$(RESET)"
+	@echo "$(CYAN)Creando objetos de $(NAME)...\n$(RESET)"
 
-%.o: %.c
-	@printf "\033[0;33mGenerating libft objects... %-33.33s\r" $@
-	@${CC} ${CFLAGS} -c $< -o $@
-
+# La regla clean elimina todos los archivos objeto y el directorio
 clean:
-	@rm -f $(OBJ)
+	@echo "$(RED)Eliminando archivos objeto de $(NAME)...\n$(RESET)"
+	@rm -rf $(addprefix $(OBJDIR)/, $(OBJS))
+	@echo "$(GREEN)¡Todos los archivos objeto de $(NAME) han sido eliminados!\n$(RESET)"
+	@echo "$(RED)Eliminando directorio de objetos de $(NAME)...\n$(RESET)"
+	@rm -rf $(OBJDIR)
+	@echo "$(GREEN)¡Directorio de objetos de $(NAME) eliminado!\n$(RESET)"
 
+# La regla fclean elimina todos los archivos objeto y el ejecutable
 fclean: clean
-	@rm -f $(NAME)
+	@echo "$(RED)Eliminando $(NAME)...\n$(RESET)"
+	@rm -rf $(NAME)
+	@echo "$(GREEN)¡$(NAME) ha sido eliminado!\n$(RESET)"
 
+# La regla re elimina todo y compila nuevamente
 re: fclean all
 
-norm:
-	norminette $(SRC) $(HEADER)
+# La regla git agrega, hace commit y hace push
+git:
+	git add .
+	git status
+	@read -p "Quieres continuar? [y/n]: " answer; \
+	if [ "$$answer" = "y" ]; then \
+		read -p "Mensaje para el commit: " message; \
+		git commit -m "$$message"; \
+		git push; \
+		echo "╔══════════════════════════════════════════════════════════════╗"; \
+		echo "║ $(BOLD_GREEN)(┌ಠ_ಠ)\t\t ¡¡¡Git push realizado!!! \t(ಠ_ಠ┐)$(RESET) ║"; \
+		echo "╚══════════╗ ╔══════════╗ ╔══════════╗ ╔══════════╗ ╔══════════╝"; \
+	else \
+		echo "$(BOLD_RED)(҂◕︵◕) \t\t¡¡¡Git push no realizado \t(҂◕︵◕)!!!$(RESET)"; \
+	fi
 
-.PHONY: all clean fclean re norm
+# La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
+.PHONY: all clean fclean re git
+#------------------------------------------------------------------------------#
