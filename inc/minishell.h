@@ -6,7 +6,7 @@
 /*   By: amiguel- <amiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:03:09 by amiguel-          #+#    #+#             */
-/*   Updated: 2024/11/28 11:22:08 by amiguel-         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:24:49 by amiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <errno.h>
 # include <signal.h>
 # include "colors.h"
+# include "struct.h"
 
 int	headline(void);
 int main();
