@@ -1,4 +1,4 @@
-#include "../../minishell.h"
+#include "../../inc/utils.h"
 
 /* join_strs:
 *	Joins two strings together, freeing the previous string.

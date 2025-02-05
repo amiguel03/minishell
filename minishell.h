@@ -5,9 +5,7 @@
 
 # include "libft/libft.h"
 # include "inc/struct.h"
-# include "inc/main.h"
-# include "inc/parse.h"
-# include "inc/redirect.h"
+# include "inc/utils.h"
 # include <unistd.h>
 # include <stddef.h>
 # include <stdio.h>

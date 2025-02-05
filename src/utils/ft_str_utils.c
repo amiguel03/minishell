@@ -1,4 +1,4 @@
-#include "../../include/utils.h"
+#include "../../inc/utils.h"
 
 void	ft_strstr_free(char **str)
 {
