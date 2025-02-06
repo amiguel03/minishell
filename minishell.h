@@ -6,16 +6,22 @@
 # include "libft/libft.h"
 # include "inc/struct.h"
 # include "inc/utils.h"
-# include <unistd.h>
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <ctype.h>
-# include <sys/stat.h>
+# include "inc/path.h"
+# include <math.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <dirent.h>
+# include <signal.h>
 # include <limits.h>
-# include <stdarg.h>
+# include <termios.h>
+# include <sys/stat.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
+# include <sys/types.h>
+# include <sys/param.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 #endif

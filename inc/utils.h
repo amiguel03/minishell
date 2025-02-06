@@ -3,7 +3,7 @@
 # include "../minishell.h"
 
 // 〖─◇──◇──◇──◇──◇──◇──◇──◇──◇──◇──◇──◇──◇│◇──◇──◇──◇──◇──◇──◇──◇──◇──◇──◇──◇─〗
-//                                     〘LEXER〙
+//                                     〘UTILS〙
 
 // error.c
 void	errmsg(char *errmsg, char *detail, int quotes);

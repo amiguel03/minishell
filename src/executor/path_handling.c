@@ -1,4 +1,4 @@
-#include "../../include/path.h"
+#include "../../inc/path.h"
 
 char **ft_create_path(char **env)
 {
@@ -9,7 +9,7 @@ char **ft_create_path(char **env)
 	path = NULL;
 	while (env[++i] != NULL)
 	{
-		if (ft_strnstrstr(env[i], "PATH=", 5))
+		if (ft_strnstr(env[i], "PATH=", 5))
 			path = ft_split(env[i] + 5, ':');
 	}
 	return (path);
