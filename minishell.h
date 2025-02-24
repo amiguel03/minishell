@@ -7,6 +7,8 @@
 # include "inc/struct.h"
 # include "inc/utils.h"
 # include "inc/path.h"
+# include "inc/executor.h"
+# include "inc/files.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
